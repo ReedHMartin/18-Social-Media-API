@@ -3,9 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dayjs = require('dayjs');
 
-// TODO: Import API routes
+// Import API routes
+const userRoutes = require('./routes/api/users/routes');
+const thoughtRoutes = require('./routes/api/thoughts/routes');
 
-// TODO: Set up Express app and specify port
+// Set up Express app and specify port
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 // TODO: Set up middleware (body parser and CORS handling)
 
