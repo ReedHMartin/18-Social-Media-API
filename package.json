@@ -1,0 +1,24 @@
+{
+  "name": "18-social-media-api",
+  "version": "1.0.0",
+  "description": "An API for a social media network that uses a NoSQL database",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReedHMartin/18-Social-Media-API.git"
+  },
+  "author": "Reed Martin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ReedHMartin/18-Social-Media-API/issues"
+  },
+  "homepage": "https://github.com/ReedHMartin/18-Social-Media-API#readme",
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3"
+  }
+}
