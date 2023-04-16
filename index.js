@@ -20,9 +20,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// Connect to your MongoDB database using Mongoose
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network-api', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
-// TODO: Connect to your MongoDB database using Mongoose
+// Set up API routes
+app.use('/api/users', userRoutes);
+app.use('/api/thoughts', thoughtRoutes);
 
-// TODO: Set up API routes
-
-// TODO: Start the server and listen on the specified port
+// Start the server and listen on the specified port
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
