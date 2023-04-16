@@ -11,7 +11,15 @@ const thoughtRoutes = require('./routes/api/thoughts/routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// TODO: Set up middleware (body parser and CORS handling)
+// Set up middleware (body parser and CORS handling)
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 
 // TODO: Connect to your MongoDB database using Mongoose
 
