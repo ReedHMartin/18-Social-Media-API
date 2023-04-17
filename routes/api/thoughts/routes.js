@@ -2,6 +2,8 @@
 
 // TODO: Import Thought model
 
+// TODO: Import thoughtControllers
+
 // TODO: Create a new router instance from Express
 
 // TODO: Set up the API routes for thoughts
