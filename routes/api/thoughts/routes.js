@@ -1,20 +1,35 @@
-// TODO: Import required packages (Express)
+// Import required packages (Express)
+const express = require('express');
 
-// TODO: Import Thought model
+// Import Thought model
+const Thought = require('../models/Thought');
 
-// TODO: Import thoughtControllers
+// Import thoughtControllers
+const thoughtControllers = require('../controllers/thoughtControllers');
 
-// TODO: Create a new router instance from Express
+// Create a new router instance from Express
+const router = express.Router();
 
-// TODO: Set up the API routes for thoughts
-//       - GET to get all thoughts
-//       - GET to get a single thought by its _id
-//       - POST to create a new thought (and push the created thought's _id to the associated user's thoughts array)
-//       - PUT to update a thought by its _id
-//       - DELETE to remove a thought by its _id
+// Set up the API routes for thoughts
+router
+  .route('/')
+  .get(thoughtControllers.getAllThoughts)
+  .post(thoughtControllers.createThought);
 
-// TODO: Set up the API routes for reactions to thoughts
-//       - POST to create a reaction stored in a single thought's reactions array field
-//       - DELETE to pull and remove a reaction by the reaction's reactionId value
+router
+  .route('/:id')
+  .get(thoughtControllers.getThoughtById)
+  .put(thoughtControllers.updateThought)
+  .delete(thoughtControllers.deleteThought);
 
-// TODO: Export the router
+// Set up the API routes for reactions to thoughts
+router
+  .route('/:thoughtId/reactions')
+  .post(thoughtControllers.createReaction);
+
+router
+  .route('/:thoughtId/reactions/:reactionId')
+  .delete(thoughtControllers.deleteReaction);
+
+// Export the router
+module.exports = router;
