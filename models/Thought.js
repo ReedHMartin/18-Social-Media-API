@@ -1,4 +1,7 @@
-// TODO: Import required packages (Mongoose)
+// Import required packages
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const dayjs = require('dayjs');
 
 // TODO: Define the Reaction schema (not a model, used as a subdocument schema for the Thought model)
 //       - reactionId (ObjectId, default value set to a new ObjectId)
@@ -13,4 +16,7 @@
 //       - reactions (Array of nested documents created with the Reaction schema)
 //       - reactionCount (virtual property that retrieves the length of the thought's reactions array field on query)
 
-// TODO: Export the Thought model
+
+// Export the Thought model
+const Thought = mongoose.model('Thought', ThoughtSchema);
+module.exports = Thought;
