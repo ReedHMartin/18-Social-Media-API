@@ -1,6 +1,5 @@
-const { User } = require('../models');
-
 // Import required packages (User and Thought models)
+const { User } = require('../models');
 
 const userControllers = {
     // Method to retrieve all users from the database

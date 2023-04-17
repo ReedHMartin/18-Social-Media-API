@@ -1,7 +1,15 @@
 const Thought = require('../models/Thought');
 
 const thoughtControllers = {
-  // TODO: Create a method to get all thoughts
+  // Create a method to get all thoughts
+  getAllThoughts: async (req, res) => {
+    try {
+      const thoughts = await Thought.find({});
+      res.json(thoughts);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
 
   // TODO: Create a method to get a single thought by its _id
 
