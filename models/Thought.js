@@ -3,11 +3,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const dayjs = require('dayjs');
 
-// TODO: Define the Reaction schema (not a model, used as a subdocument schema for the Thought model)
-//       - reactionId (ObjectId, default value set to a new ObjectId)
-//       - reactionBody (String, required, 280 character maximum)
-//       - username (String, required)
-//       - createdAt (Date, default value set to the current timestamp, formatted using a getter method)
+// Define the Reaction schema
+const ReactionSchema = new Schema({
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId()
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      maxLength: 280
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      get: timestamp => dayjs(timestamp).format('MMM D, YYYY h:mm A')
+    }
+  }, { _id: false });
 
 // TODO: Define the Thought schema
 //       - thoughtText (String, required, 1 to 280 characters)
