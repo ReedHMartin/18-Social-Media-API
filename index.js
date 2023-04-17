@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const dayjs = require('dayjs');
 
 // Import API routes
-const userRoutes = require('./routes/api/users/routes');
-const thoughtRoutes = require('./routes/api/thoughts/routes');
+const userRoutes = require('./routes/api/users/userRoutes');
+const thoughtRoutes = require('./routes/api/thoughts/thoughtRoutes');
 
 // Set up Express app and specify port
 const app = express();
