@@ -7,16 +7,23 @@ const userControllers = require('../../controllers/userControllers');
 // Create a new router instance from Express
 const router = express.Router();
 
-// TODO: Set up the API routes for users using userControllers methods
-// - GET all users
-// - GET a single user by its _id and populate thought and friend data
-// - POST a new user
-// - PUT to update a user by its _id
-// - DELETE to remove a user by its _id (bonus: remove user's associated thoughts when deleted)
+// Set up the API routes for users using userControllers methods
+router
+  .route('/')
+  .get(userControllers.getAllUsers)
+  .post(userControllers.createUser);
 
-// TODO: Set up the API routes for a user's friend list using userControllers methods
-// - POST to add a new friend to a user's friend list
-// - DELETE to remove a friend from a user's friend list
+router
+  .route('/:id')
+  .get(userControllers.getUserById)
+  .put(userControllers.updateUser)
+  .delete(userControllers.deleteUser);
+
+// Set up the API routes for a user's friend list using userControllers methods
+router
+  .route('/:userId/friends/:friendId')
+  .post(userControllers.addFriend)
+  .delete(userControllers.removeFriend);
 
 // Export the router
 module.exports = router;
