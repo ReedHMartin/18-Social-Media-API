@@ -3,7 +3,15 @@ const { User } = require('../models');
 // TODO: Import required packages (User and Thought models)
 
 const userControllers = {
-    // TODO: Implement the getAllUsers method to retrieve all users from the database
+    // Method to retrieve all users from the database
+    getAllUsers: async (req, res) => {
+        try {
+            const users = await User.find({});
+            res.json(users);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
   
     // TODO: Implement the getUserById method to retrieve a single user by its _id and populate thought and friend data
   
@@ -18,5 +26,4 @@ const userControllers = {
     // TODO: Implement the removeFriend method to remove a friend from a user's friend list by updating the friends array
   };
   
-  // TODO: Export the userControllers object for use in other parts of the application
-  
+module.exports = userControllers;
