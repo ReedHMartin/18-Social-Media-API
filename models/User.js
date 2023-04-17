@@ -2,50 +2,38 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 // Define the User schema
 const UserSchema = new Schema({
-    // Define the username field with the following constraints:
-    // - It should be a string
-    // - It should be unique (no two users with the same username)
-    // - It is required (cannot be empty)
-    // - Trimmed (removes leading and trailing white spaces)
-    username: {
-      type: String,
-      unique: true,
-      required: true,
-      trim: true
-    },
-    // Define the email field with the following constraints:
-    // - It should be a string
-    // - It is required (cannot be empty)
-    // - It should be unique (no two users with the same email)
-    // - It must match a valid email address format
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
-    },
-    // Define the thoughts field as an array of ObjectId values
-    // Each ObjectId in the array references a Thought document
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Thought'
-      }
-    ],
-    // Define the friends field as an array of ObjectId values
-    // Each ObjectId in the array references a User document (self-reference)
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    ]
-  });
-  
+  // Define the username field as a unique and required string
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  // Define the email field as a unique and required string, validate it against a regular expression to ensure it's a valid email address, and display a custom error message if the validation fails
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+  },
+  // Define the thoughts field as an array of ObjectIds that reference Thought documents, creating a one-to-many relationship between User and Thought
+  thoughts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought'
+    }
+  ],
+  // Define the friends field as an array of ObjectIds that reference other User documents, creating a self-referential relationship for the User model
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
+});
 
-// Export the User model
+// Create a User model from the UserSchema and export it for use in other parts of the application
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
